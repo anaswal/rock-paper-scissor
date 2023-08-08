@@ -4,9 +4,6 @@ function getComputerChoice() {
   return choice[indexChoice];
 }
 
-const computerSelection = getComputerChoice();
-console.log(computerSelection);
-
 function playRound(computerSelection, playerSelection) {
   switch (playerSelection) {
     case "rock":
@@ -22,18 +19,23 @@ function playRound(computerSelection, playerSelection) {
         : computerSelection === "rock"
         ? `You win! ${playerSelection} beats the ${computerSelection}`
         : "Draw!";
+
     case "scissor":
       return computerSelection === "rock"
         ? `You lose! ${computerSelection} beats the ${playerSelection}`
         : computerSelection === "paper"
         ? `You win! ${playerSelection} beats the ${computerSelection}`
         : "Draw!";
+
     default:
       return "Wrong choice!";
   }
 }
 
-const playerSelectionMe = prompt("Rock/Paper/Scissor :").toLowerCase();
-
-const result = playRound(computerSelection, playerSelectionMe);
-console.log(result);
+let i = 1;
+while (i <= 5) {
+  const computerSelection = getComputerChoice();
+  const playerSelectionMe = prompt("Rock/Paper/Scissor :").toLowerCase();
+  console.log(playRound(computerSelection, playerSelectionMe));
+  i++;
+}
