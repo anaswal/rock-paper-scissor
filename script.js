@@ -1,4 +1,5 @@
 const playerChoice = document.querySelectorAll(".choice");
+const result = document.querySelector('.result');
 
 function getComputerChoice() {
   const choice = ["rock", "paper", "scissor"];
@@ -46,6 +47,7 @@ playerChoice.forEach((button) => {
   button.addEventListener("click", (e) => {
     const computerSelection = getComputerChoice();
     const buttonValue = e.target.firstChild.textContent;
-    console.log(playRound(computerSelection, buttonValue.toLowerCase()));
+    const winner = playRound(computerSelection, buttonValue.toLowerCase())
+    result.innerText = winner;
   });
 });
