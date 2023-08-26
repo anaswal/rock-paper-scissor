@@ -27,25 +27,32 @@ function playRound(computerSelection, playerSelection) {
       } else {
         return 'Draw';
       }
-      // return computerSelection === "paper"
-      //   ? `You lose! ${computerSelection} beats the ${playerSelection}`
-      //   : computerSelection === "scissor"
-      //   ? `You win! ${playerSelection} beats the ${computerSelection}`
-      //   : "Draw!";
 
     case "paper":
-      return computerSelection === "scissor"
-        ? `You lose! ${computerSelection} beats the ${playerSelection}`
-        : computerSelection === "rock"
-        ? `You win! ${playerSelection} beats the ${computerSelection}`
-        : "Draw!";
+      if (computerSelection === 'scissor') {
+        computerPoint++;
+        computerScore.textContent = computerPoint;
+        return `You lose! ${computerSelection} beats the ${playerSelection}`;
+      } else if (computerSelection === 'rock') {
+        playerPoint++;
+        playerScore.textContent = playerPoint;
+        return `You win! ${playerSelection} beats the ${computerSelection}`;
+      } else {
+        return 'Draw';
+      }
 
     case "scissor":
-      return computerSelection === "rock"
-        ? `You lose! ${computerSelection} beats the ${playerSelection}`
-        : computerSelection === "paper"
-        ? `You win! ${playerSelection} beats the ${computerSelection}`
-        : "Draw!";
+      if (computerSelection === 'rock') {
+        computerPoint++;
+        computerScore.textContent = computerPoint;
+        return `You lose! ${computerSelection} beats the ${playerSelection}`;
+      } else if (computerSelection === 'paper') {
+        playerPoint++;
+        playerScore.textContent = playerPoint;
+        return `You win! ${playerSelection} beats the ${computerSelection}`;
+      } else {
+        return 'Draw';
+      }
 
     default:
       return "Wrong choice!";
