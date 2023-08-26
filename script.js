@@ -1,5 +1,11 @@
 const playerChoice = document.querySelectorAll(".choice");
 const result = document.querySelector('.result');
+const playerScore = document.querySelector('#player-score');
+const computerScore = document.querySelector('#computer-score');
+const resetButton = document.querySelector('.reset');
+
+let computerPoint = 0;
+let playerPoint = 0;
 
 function getComputerChoice() {
   const choice = ["rock", "paper", "scissor"];
@@ -10,11 +16,22 @@ function getComputerChoice() {
 function playRound(computerSelection, playerSelection) {
   switch (playerSelection) {
     case "rock":
-      return computerSelection === "paper"
-        ? `You lose! ${computerSelection} beats the ${playerSelection}`
-        : computerSelection === "scissor"
-        ? `You win! ${playerSelection} beats the ${computerSelection}`
-        : "Draw!";
+      if (computerSelection === 'paper') {
+        computerPoint++;
+        computerScore.textContent = computerPoint;
+        return `You lose! ${computerSelection} beats the ${playerSelection}`;
+      } else if (computerSelection === 'scissor') {
+        playerPoint++;
+        playerScore.textContent = playerPoint;
+        return `You win! ${playerSelection} beats the ${computerSelection}`;
+      } else {
+        return 'Draw';
+      }
+      // return computerSelection === "paper"
+      //   ? `You lose! ${computerSelection} beats the ${playerSelection}`
+      //   : computerSelection === "scissor"
+      //   ? `You win! ${playerSelection} beats the ${computerSelection}`
+      //   : "Draw!";
 
     case "paper":
       return computerSelection === "scissor"
@@ -35,6 +52,7 @@ function playRound(computerSelection, playerSelection) {
   }
 }
 
+
 // let i = 1;
 // while (i <= 5) {
 //   const computerSelection = getComputerChoice();
@@ -50,4 +68,8 @@ playerChoice.forEach((button) => {
     const winner = playRound(computerSelection, buttonValue.toLowerCase())
     result.innerText = winner;
   });
+});
+
+resetButton.addEventListener('click', () => {
+  window.location.reload();
 });
