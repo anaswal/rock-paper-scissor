@@ -1,9 +1,9 @@
 const playerChoice = document.querySelectorAll(".choice");
-const result = document.querySelector('.result');
-const playerScore = document.querySelector('#player-score');
-const computerScore = document.querySelector('#computer-score');
-const resetButton = document.querySelector('.reset');
-const round = document.querySelector('#round');
+const result = document.querySelector(".result");
+const playerScore = document.querySelector("#player-score");
+const computerScore = document.querySelector("#computer-score");
+const resetButton = document.querySelector(".reset");
+const round = document.querySelector("#round");
 
 let computerPoint = 0;
 let playerPoint = 0;
@@ -17,42 +17,42 @@ function getComputerChoice() {
 function playRound(computerSelection, playerSelection) {
   switch (playerSelection) {
     case "rock":
-      if (computerSelection === 'paper') {
+      if (computerSelection === "paper") {
         computerPoint++;
         computerScore.textContent = computerPoint;
         return `You lose! ${computerSelection} beats the ${playerSelection}`;
-      } else if (computerSelection === 'scissor') {
+      } else if (computerSelection === "scissor") {
         playerPoint++;
         playerScore.textContent = playerPoint;
         return `You win! ${playerSelection} beats the ${computerSelection}`;
       } else {
-        return 'Draw';
+        return "Draw";
       }
 
     case "paper":
-      if (computerSelection === 'scissor') {
+      if (computerSelection === "scissor") {
         computerPoint++;
         computerScore.textContent = computerPoint;
         return `You lose! ${computerSelection} beats the ${playerSelection}`;
-      } else if (computerSelection === 'rock') {
+      } else if (computerSelection === "rock") {
         playerPoint++;
         playerScore.textContent = playerPoint;
         return `You win! ${playerSelection} beats the ${computerSelection}`;
       } else {
-        return 'Draw';
+        return "Draw";
       }
 
     case "scissor":
-      if (computerSelection === 'rock') {
+      if (computerSelection === "rock") {
         computerPoint++;
         computerScore.textContent = computerPoint;
         return `You lose! ${computerSelection} beats the ${playerSelection}`;
-      } else if (computerSelection === 'paper') {
+      } else if (computerSelection === "paper") {
         playerPoint++;
         playerScore.textContent = playerPoint;
         return `You win! ${playerSelection} beats the ${computerSelection}`;
       } else {
-        return 'Draw';
+        return "Draw";
       }
 
     default:
@@ -67,17 +67,17 @@ playerChoice.forEach((button) => {
   button.addEventListener("click", (e) => {
     const computerSelection = getComputerChoice();
     const buttonValue = e.target.firstChild.textContent;
-    const winner = playRound(computerSelection, buttonValue.toLowerCase())
+    const winner = playRound(computerSelection, buttonValue.toLowerCase());
     result.innerText = winner;
     console.log(computerPoint);
     i--;
     round.textContent = i;
     if (i === 0) {
-      playerChoice.forEach(btn => btn.setAttribute('disabled', true));
-    } 
+      playerChoice.forEach((btn) => btn.setAttribute("disabled", true));
+    }
   });
 });
 
-resetButton.addEventListener('click', () => {
+resetButton.addEventListener("click", () => {
   window.location.reload();
 });
