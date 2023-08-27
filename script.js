@@ -69,6 +69,7 @@ playerChoice.forEach((button) => {
     const buttonValue = e.target.firstChild.textContent;
     const winner = playRound(computerSelection, buttonValue.toLowerCase())
     result.innerText = winner;
+    console.log(computerPoint);
     i--;
     round.textContent = i;
     if (i === 0) {
@@ -76,7 +77,6 @@ playerChoice.forEach((button) => {
     } 
   });
 });
-
 
 resetButton.addEventListener('click', () => {
   window.location.reload();
