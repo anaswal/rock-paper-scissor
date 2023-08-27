@@ -3,6 +3,7 @@ const result = document.querySelector('.result');
 const playerScore = document.querySelector('#player-score');
 const computerScore = document.querySelector('#computer-score');
 const resetButton = document.querySelector('.reset');
+const round = document.querySelector('#round');
 
 let computerPoint = 0;
 let playerPoint = 0;
@@ -59,14 +60,8 @@ function playRound(computerSelection, playerSelection) {
   }
 }
 
-
-// let i = 1;
-// while (i <= 5) {
-//   const computerSelection = getComputerChoice();
-//   const playerSelectionMe = prompt("Rock/Paper/Scissor :").toLowerCase();
-//   console.log(playRound(computerSelection, playerSelectionMe));
-//   i++;
-// }
+let i = 5;
+round.textContent = i;
 
 playerChoice.forEach((button) => {
   button.addEventListener("click", (e) => {
@@ -74,8 +69,14 @@ playerChoice.forEach((button) => {
     const buttonValue = e.target.firstChild.textContent;
     const winner = playRound(computerSelection, buttonValue.toLowerCase())
     result.innerText = winner;
+    i--;
+    round.textContent = i;
+    if (i === 0) {
+      playerChoice.forEach(btn => btn.setAttribute('disabled', true));
+    } 
   });
 });
+
 
 resetButton.addEventListener('click', () => {
   window.location.reload();
