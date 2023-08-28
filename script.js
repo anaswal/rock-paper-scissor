@@ -4,6 +4,7 @@ const playerScore = document.querySelector("#player-score");
 const computerScore = document.querySelector("#computer-score");
 const resetButton = document.querySelector(".reset");
 const round = document.querySelector("#round");
+const winnerText = document.querySelector(".winner");
 
 let computerPoint = 0;
 let playerPoint = 0;
@@ -69,10 +70,17 @@ playerChoice.forEach((button) => {
     const buttonValue = e.target.firstChild.textContent;
     const winner = playRound(computerSelection, buttonValue.toLowerCase());
     result.innerText = winner;
-    console.log(computerPoint);
     i--;
     round.textContent = i;
+
     if (i === 0) {
+      if (playerPoint > computerPoint) {
+        winnerText.innerText = `You are the winner with ${playerPoint} point`;
+      } else if (playerPoint < computerPoint) {
+        winnerText.textContent = `Computer is the winner ${computerPoint} point`;
+      } else {
+        winnerText.textContent = "Draw!";
+      }
       playerChoice.forEach((btn) => btn.setAttribute("disabled", true));
     }
   });
